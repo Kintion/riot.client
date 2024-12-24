@@ -1,0 +1,86 @@
+
+
+
+.buscador{
+  place-items: center;
+  justify-content: center;
+  color: aqua;
+  margin: auto;
+  vertical-align: middle;
+  margin-left: 42%;
+
+}
+
+.input{
+  height: 30px;
+  width: 200px;
+}
+
+
+.boton {
+  font-size: 24px; /* Ajusta el tamaño del icono */
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.boton img {
+  width: 20px; /* Ajusta el tamaño de la imagen */
+  height: 20px;
+}
+
+.game-container {
+  margin: 20px 0; /* Espacio entre cada partida */
+  padding: 20px;
+  border: 1px solid #ddd; /* Borde alrededor de cada partida */
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Color de fondo para cada partida */
+}
+
+.teams-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Espacio entre los equipos */
+}
+
+.team-column {
+  flex: 1;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+}
+
+.participants-container {
+  margin-top: 10px;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 0.9em;
+  margin: 5px 0;
+}
+
+img {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* Añadir un borde o sombra a la partida para separarlas visualmente */
+.game-container {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para separarlas */
+  background-color: #fff; /* Fondo blanco para que resalte */
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
