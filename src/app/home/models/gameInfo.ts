@@ -10,6 +10,7 @@ import { Team } from "./team";
     platformId: string;
     queueId: number;
     teams: Team[];
+    gameEndTimestamp: number;
   }
   
 

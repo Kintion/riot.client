@@ -19,65 +19,72 @@
 
 .boton {
   font-size: 24px; /* Ajusta el tamaño del icono */
-  padding: 10px;
-  background-color: #007bff;
+  padding: 2px;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .boton img {
-  width: 20px; /* Ajusta el tamaño de la imagen */
-  height: 20px;
+  width: 35px; 
+  height: 30px; 
 }
 
 .game-container {
-  margin: 20px 0; /* Espacio entre cada partida */
-  padding: 20px;
+  margin: 5px 0; /* Espacio entre cada partida */
+  padding: 5px;
   border: 1px solid #ddd; /* Borde alrededor de cada partida */
-  border-radius: 8px;
-  background-color: #f9f9f9; /* Color de fondo para cada partida */
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para separarlas */
+  margin-left: 40%;
+  width: 40%;
+}
+
+
+.game-container.winner {
+  background-color: #d4edda; /* Verde claro */
+  border-color: #c3e6cb;
+}
+
+.game-container.loser {
+  background-color: #f8d7da; /* Rojo claro */
+  border-color: #f5c6cb;
+}
+
+.game-info{
+  text-align: center;
 }
 
 .teams-container {
   display: flex;
-  justify-content: space-between;
-  gap: 20px; /* Espacio entre los equipos */
+  /* justify-content: space-between; */
+  gap: 10px; /* Espacio entre los equipos */
 }
 
-.team-column {
-  flex: 1;
-  padding: 10px;
-  background-color: #f1f1f1;
-  border-radius: 8px;
+
+.participant-main-container{
+  display:flex;
+  padding-bottom: 10px;
 }
 
-.participants-container {
-  margin-top: 10px;
+.participant-main-summoners{
+  display: flex;
+  flex-direction: column; 
+  gap: 10px; 
+  margin-left: 5px;
 }
 
-h3 {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 10px;
+
+p.queue.winner{
+  color: blue;
 }
 
-p {
-  font-size: 0.9em;
-  margin: 5px 0;
+p.queue.loser{
+  color: red;
 }
 
-img {
-  margin-right: 5px;
-  vertical-align: middle;
-}
-
-/* Añadir un borde o sombra a la partida para separarlas visualmente */
-.game-container {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para separarlas */
-  background-color: #fff; /* Fondo blanco para que resalte */
-}
 
 hr {
   border: 0;

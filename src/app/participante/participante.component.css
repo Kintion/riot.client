@@ -1,0 +1,34 @@
+.participant-main-container{
+    display:flex;
+    padding-bottom: 10px;
+  }
+  
+  .participant-main-summoners{
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+    margin-left: 5px;
+  }
+
+  .participant-main-kda{
+    padding: 10px;
+    width: 90px;
+  }
+
+  .kda-style1{
+    color:black;
+  }
+
+  .kda-style2{
+    color:red;
+  }
+
+  .kda-style3{
+    color:darkgray;
+  }
+
+  .score{
+    display: flex;
+
+    flex-direction: row;
+  }

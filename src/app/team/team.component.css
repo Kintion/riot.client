@@ -1,0 +1,21 @@
+.team-column {
+    flex: 1;
+    /* padding: 10px; */
+    /*background-color: #f1f1f1;*/
+    border-radius: 8px;
+  }
+  
+  .participants-container {
+    /* margin-top: 10px; */
+  }
+  
+  .participant-id.main{
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: blue;
+  }
+
+ 
+
+  
+  

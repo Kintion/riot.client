@@ -1,0 +1,15 @@
+<div class="team-column">    
+    <div class="participants-container">
+      <div *ngFor="let participant of game.info.participants">
+        <div *ngIf="isSameTeam(teamId, participant)"style="display: flex; align-items: center;">
+          <img 
+            src="https://ddragon.leagueoflegends.com/cdn/14.23.1/img/champion/{{ participant.championName }}.png" 
+            alt="{{ participant.championName }}" 
+            style="width: 25px; height: 25px;">
+        <p class="participant-id" [ngClass]="{
+          'main': isMain(participant),
+        }">{{ participant.riotIdGameName }}#{{ participant.riotIdTagline }}</p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -4,60 +4,46 @@
     placeholder="Buscar por nombre de invocador"
     [(ngModel)]="searchTerm"
   />
-  <button (click)="buscar()" class="boton"> <img src="../../assets/lupa.png" alt="Buscar"></button>
+  <button (click)="buscar()" class="boton"> <img src="assets/lupa.png" alt=""></button>
 </div>
 
-<div *ngIf="games && games.length; else noData">
+<div *ngIf="cargando;">
+  <H1 style="color:white"> CARGANDO...</H1>
+</div>
+
+
+<div *ngIf="games && games.length && !cargando; else noData">
   <div *ngFor="let game of games">
-    <div class="game-container">
-      <h2>Game Duration: {{ game.info.gameDuration / 60 | number:'1.0-0'}}:{{ game.info.gameDuration % 60 }}</h2>
-      <p>Game Version: {{ game.info.gameVersion | slice:0:5 }}</p>
-      <p>Platform: {{ game.info.platformId }}</p>
-      <p>Queue: {{ game.info.queueId == 440 ? 'FLEX' : 'SOLO QUEUE' }}</p>
-
+    <div class="game-container"
+    [ngClass]="{
+      'winner': Won(game),
+      'loser': !Won(game)
+    }"
+    >
       <div class="teams-container">
-        <div class="team-column">
-          <h3>Team 1 - {{ getTeamResult(100, game.info.teams) }}</h3>
-          <div class="participants-container">
-            <div *ngFor="let participant of game.info.participants">
-              <div *ngIf="isSameTeam(100, participant)">
-              <p>
-                <strong>{{ participant.championName }}</strong>
-                <img 
-                  src="https://ddragon.leagueoflegends.com/cdn/14.23.1/img/champion/{{ participant.championName }}.png" 
-                  alt="{{ participant.championName }}" 
-                  style="width: 25px; height: 25px;">
-                ({{ participant.individualPosition }})
-              </p>
-              <p>{{ participant.riotIdGameName }}#{{ participant.riotIdTagline }}</p>
-            </div>
-          </div>
-          </div>
+        <div class="game-info">
+          <p class="queue"
+          [ngClass]="{
+            'winner': Won(game),
+            'loser': !Won(game)
+          }">{{ game.info.queueId == 440 ? 'Clasificatoria flexible' : 'Clasificatoria solo/dúo' }}</p>
+          <p>{{ tiempoDesdeUltimaPartida(game.info.gameEndTimestamp)}}</p>
+          <p> {{getResultGame(game) }}</p>
+          <p>{{ game.info.gameDuration / 60 | number:'1.0-0'}}:{{ game.info.gameDuration % 60 }}</p>
         </div>
-
-        <div class="team-column">
-          <h3>Team 2 - {{ getTeamResult(200, game.info.teams) }}</h3>
-          <div class="participants-container">
-            <div *ngFor="let participant of game.info.participants">
-              <div *ngIf="isSameTeam(200, participant)">
-              <p>
-                <strong>{{ participant.championName }}</strong>
-                <img 
-                  src="https://ddragon.leagueoflegends.com/cdn/14.23.1/img/champion/{{ participant.championName }}.png" 
-                  alt="{{ participant.championName }}" 
-                  style="width: 25px; height: 25px;">
-                ({{ participant.individualPosition }})
-              </p>
-              <p>{{ participant.riotIdGameName }}#{{ participant.riotIdTagline }}</p>
-            </div>
-          </div>
-          </div>
+        <div class="participant-main">
+          
+          <app-participante [game]="game" [summonerName]="summonerName" [participante]="participante!"></app-participante>
+          <app-items [game]="game" [summonerName]="summonerName" [participante]="participante!"></app-items>   
         </div>
-      </div>
+        <app-team [teamId]="100" [game]="game" [summonerName]="summonerName" ></app-team>
+        <app-team [teamId]="200" [game]="game" [summonerName]="summonerName" ></app-team>
+  
+      </div> 
     </div>
   </div>
 </div>
-
+    
 <ng-template #noData>
-  <p>No games available.</p>
+  <p style="color:white">No se encontraron partidas.</p>
 </ng-template>

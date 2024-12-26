@@ -1,0 +1,34 @@
+<div class = "participant-main-container">
+    <img 
+    src="https://ddragon.leagueoflegends.com/cdn/14.23.1/img/champion/{{ getParticipanteCurrentGame(game)!.championName }}.png"
+    alt="{{ getParticipanteCurrentGame(game)?.championName }}" 
+    style="width: 70px; height: 70px;">
+    <div class="participant-main-summoners">
+      <img 
+      src="{{ getSummonerSpellUrl(getParticipanteCurrentGame(game)!.summoner1Id) }}" 
+      alt="" 
+      style="width: 25px; height: 25px;">
+      <img 
+      src="{{ getSummonerSpellUrl(getParticipanteCurrentGame(game)!.summoner2Id) }}" 
+      alt="" 
+      style="width: 25px; height: 25px;">
+    </div>
+    <div class="participant-main-summoners">
+      <img 
+      src="{{ getMainRuneImageById(getParticipanteCurrentGame(game)!.perks.styles[0].selections[0].perk) }}" 
+      style="width: 25px; height: 25px;">
+      <img 
+      src="{{ getRuneImageById(getParticipanteCurrentGame(game)!.perks.styles[1].style) }}"
+      style="width: 25px; height: 25px;">
+    </div>
+    <div class=" participant-main-kda">
+        <div class="score">
+            <p class="kda-style1">{{getParticipanteCurrentGame(game)!.kills}} </p>
+            <p class="kda-style3"> / </p> 
+            <p class="kda-style2"> {{getParticipanteCurrentGame(game)!.deaths}} </p>
+            <p class="kda-style3"> / </p> 
+            <p class="kda-style1"> {{getParticipanteCurrentGame(game)!.assists}}</p>
+        </div>
+      <p>{{calculateKDA(getParticipanteCurrentGame(game)!)}}</p>
+    </div>
+</div>
