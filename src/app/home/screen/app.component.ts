@@ -12,12 +12,15 @@ import { TeamComponent } from "../../team/team.component";
 import { Utility } from '../../shared/utility';
 import { ItemsComponent } from "../../items/items.component";
 import { ParticipanteComponent } from "../../participante/participante.component";
+import { AccountComponent } from "../../account/account.component";
+import { RankComponent } from "../../rank/rank.component";
+import { Account } from '../models/account';
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, HttpClientModule, MatProgressSpinnerModule, TeamComponent, ItemsComponent, ParticipanteComponent],
+  imports: [FormsModule, CommonModule, HttpClientModule, MatProgressSpinnerModule, TeamComponent, ItemsComponent, ParticipanteComponent, AccountComponent, RankComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [ApiService]
@@ -25,7 +28,9 @@ import { ParticipanteComponent } from "../../participante/participante.component
 export class AppComponent {
   title = 'Riot ban application';
 
-  searchTerm: string = 'Ella-uwu'; 
+  gameName: string = ''; 
+
+  tagLine: string = '';
 
   summonerName: string = ''; 
 
@@ -33,9 +38,10 @@ export class AppComponent {
 
   cargando: boolean = false;
 
-  games: GameResponse['data'] = []; // Lista de juegos
+  games!: GameResponse['data']; // Lista de juegos
 
-
+  accountSummoner: Account | null = null;
+  
 
   
   constructor(private apiService: ApiService, private utilityService: Utility){}
@@ -45,11 +51,11 @@ export class AppComponent {
     console.log('cargando...', this.cargando);
 
     this.games = [];
-    this.apiService.getData(this.searchTerm).subscribe({
+    this.apiService.getAccountData(this.gameName, this.tagLine).subscribe({
       next: (response) => {
-        this.games = response.data;
-        this.summonerName = this.searchTerm; 
-        this.participante = this.games[0].info.participants.find((p) => p.riotIdGameName.toLowerCase() + '-' + p.riotIdTagline.toLowerCase() === this.summonerName.toLowerCase());// Actualizamos la lista con los nuevos datos
+        this.accountSummoner = response;
+        this.summonerName = this.gameName; 
+        //this.participante = this.games[0].info.participants.find((p) => p.riotIdGameName.toLowerCase() + '-' + p.riotIdTagline.toLowerCase() === this.summonerName.toLowerCase());// Actualizamos la lista con los nuevos datos
         console.log('Datos obtenidos:', this.games);
       },
       error: (error) => {

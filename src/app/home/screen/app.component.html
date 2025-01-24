@@ -2,7 +2,12 @@
   <input class="input"
     type="text"
     placeholder="Buscar por nombre de invocador"
-    [(ngModel)]="searchTerm"
+    [(ngModel)]="gameName"
+  />
+  <input class="input"
+    type="text"
+    placeholder="Tag"
+    [(ngModel)]="tagLine"
   />
   <button (click)="buscar()" class="boton"> <img src="assets/lupa.png" alt=""></button>
 </div>
@@ -11,8 +16,17 @@
   <H1 style="color:white"> CARGANDO...</H1>
 </div>
 
+<div *ngIf="accountSummoner != null && !cargando">
+  <app-account [accountSummoner]="accountSummoner"></app-account>
+</div>
 
-<div *ngIf="games && games.length && !cargando; else noData">
+<div *ngIf="accountSummoner != null && !cargando">
+  <app-rank [queueName]="'Clasificatoria SOLO/DUO'" [rango]="accountSummoner.ranks[0].tier + ' ' +accountSummoner.ranks[0].rank" [lps]="accountSummoner.ranks[0].leaguePoints" [imagepath]="'emblem-'+accountSummoner.ranks[0].tier.toLowerCase() + '.png'" [wins]="accountSummoner.ranks[0].wins" [loses]="accountSummoner.ranks[0].losses"></app-rank>
+  <!-- <app-rank [queueName]="'Clasificatoria FLEXIBLE'" [rango]="accountSummoner.ranks[1].tier + accountSummoner.ranks[1].rank" [lps]="accountSummoner.ranks[1].leaguePoints" [imagepath]="'emblem-challenger.png'" [wins]="accountSummoner.ranks[1].wins" [loses]="accountSummoner.ranks[1].losses"></app-rank> -->
+</div>
+
+<div *ngIf="games && games.length>0 && !cargando;">
+
   <div *ngFor="let game of games">
     <div class="game-container"
     [ngClass]="{
@@ -43,7 +57,11 @@
     </div>
   </div>
 </div>
-    
-<ng-template #noData>
+
+<div *ngIf="games && games.length==0 && !cargando">
   <p style="color:white">No se encontraron partidas.</p>
-</ng-template>
+</div>
+<div class ="noData" *ngIf="!cargando">
+    <p style="color:white">Comience su búsqueda.</p>
+</div>
+
